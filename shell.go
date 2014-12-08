@@ -10,7 +10,6 @@ import (
  */
 type Shell interface {
 	Hook() string
-	Escape(string) string
 	Export(key, value string) string
 	Unset(key string) string
 }
@@ -29,6 +28,10 @@ func DetectShell(target string) Shell {
 		return ZSH
 	case "fish":
 		return FISH
+	case "vim":
+		return VIM
+	case "tcsh":
+		return TCSH
 	}
 
 	return nil
@@ -44,6 +47,7 @@ const (
 	LF            = 10
 	CR            = 13
 	US            = 31
+	SPACE         = 32
 	AMPERSTAND    = 38
 	SINGLE_QUOTE  = 39
 	PLUS          = 43
